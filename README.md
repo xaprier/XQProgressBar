@@ -1,10 +1,45 @@
 # XQProgressBar
-A circular progressbar written with C++ &amp; Qt Widgets!
+XQt::CircularProgressBar is a circular progress bar written in C++ using Qt Widgets. This progress bar offers a range of features and customization options, making it a versatile choice for various applications.
 
 You can use QtQuick but if you don't want you can use my project which is produced by QPainter
 
 The progress bar is under namespace XQt and it has multiple props as QProgressBar but more!
 
+## Features
+- Circular Design: The progress bar adopts a circular layout, providing a visually appealing representation of progress.
+- Extensive Properties: XQt::CircularProgressBar includes properties similar to QProgressBar but with additional features for enhanced customization.
+- Namespace: All components are encapsulated within the XQt namespace for better organization and to avoid naming conflicts.
+- Signals and Slots: The progress bar emits signals on every property change, providing flexibility in handling updates. Corresponding slots are available for convenient interaction.
+- Setter Functions: A set of setter functions allow easy adjustment of various properties, enabling dynamic updates to the progress bar.
+- Getter Functions: Access current property values using getter functions, ensuring encapsulation of private properties.
+
+## Usage
+To use XQt::CircularProgressBar in your project, follow these steps:
+### Include Header:
+Include the necessary header files in your project to access the XQt::CircularProgressBar functionalities.
+```cpp
+#include "XQProgressBar.h"
+```
+### Instantiate the Progress Bar:
+Create an instance of XQProgressBar in your application.
+```cpp
+XQt::XQProgressBar progressBar;
+```
+### Customize and Update:
+Utilize the setter functions to customize the progress bar according to your requirements. Connect signals to slots for dynamic updates.
+```cpp
+progressBar.setCircularDegree(180);
+progressBar.setWidth(300);
+// ... add more customization
+```
+### Integrate with Qt Widgets:
+Integrate the progress bar into your Qt Widgets application effortlessly.
+```cpp
+// Example of setting up a layout and adding the progress bar
+QVBoxLayout* layout = new QVBoxLayout;
+layout->addWidget(&progressBar);
+setLayout(layout);
+```
 ## Properties
 ### Signals
 * The signals will be emitted on every setter function works.
