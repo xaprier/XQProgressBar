@@ -10,6 +10,7 @@
 # build dir
 build/
 cmake-build-debug/
+.cache/
 
 # Compiled Object files
 *.slo
