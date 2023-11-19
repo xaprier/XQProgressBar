@@ -18,12 +18,12 @@ To use XQt::CircularProgressBar in your project, follow these steps:
 ### Include Header:
 Include the necessary header files in your project to access the XQt::CircularProgressBar functionalities.
 ```cpp
-#include "XQProgressBar.h"
+#include "CircularProgressBar.hpp"
 ```
 ### Instantiate the Progress Bar:
-Create an instance of XQProgressBar in your application.
+Create an instance of XQt::CircularProgressBar in your application.
 ```cpp
-XQt::XQProgressBar progressBar;
+XQt::CircularProgressBar progressBar;
 ```
 ### Customize and Update:
 Utilize the setter functions to customize the progress bar according to your requirements. Connect signals to slots for dynamic updates.
