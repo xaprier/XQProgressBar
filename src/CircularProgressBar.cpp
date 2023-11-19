@@ -1,4 +1,4 @@
-#include "CircularProgress.hpp"
+#include "CircularProgressBar.hpp"
 
 #include <qboxlayout.h>
 #include <qglobal.h>
@@ -10,7 +10,7 @@
 #include <iostream>
 
 namespace XQt {
-CircularProgress::CircularProgress(QWidget *parent)
+CircularProgressBar::CircularProgressBar(QWidget *parent)
     : QWidget(parent), SuperClass(parent) {
     this->paint = new QPainter();
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -18,9 +18,9 @@ CircularProgress::CircularProgress(QWidget *parent)
     updateGeometry();
 }
 
-CircularProgress::~CircularProgress() { delete this->paint; }
+CircularProgressBar::~CircularProgressBar() { delete this->paint; }
 
-void CircularProgress::resizeEvent(QResizeEvent *event) {
+void CircularProgressBar::resizeEvent(QResizeEvent *event) {
     QSize size;
     if (event->size().width() > width + marginX * 2)  // expand
         size.setWidth(qMax(event->size().width(), width + marginX * 2));
@@ -64,7 +64,7 @@ void CircularProgress::resizeEvent(QResizeEvent *event) {
 
     update();
 }
-void CircularProgress::paintEvent(QPaintEvent *event) {
+void CircularProgressBar::paintEvent(QPaintEvent *event) {
     auto pnwidth = width - progress_width;
     auto pnheight = height - progress_width;
     auto margin = progress_width / 2;
@@ -148,13 +148,13 @@ void CircularProgress::paintEvent(QPaintEvent *event) {
     paint->end();
 }
 
-void CircularProgress::setCircularDegree(const int &value) {
+void CircularProgressBar::setCircularDegree(const int &value) {
     this->circularDegree = value;
     repaint();
     emit this->SI_circularDegreeChanged(value);
 }
 
-void CircularProgress::setValue(const int &value) {
+void CircularProgressBar::setValue(const int &value) {
     this->value = value;
     if (value > max_value)
         this->value = max_value;
@@ -162,14 +162,14 @@ void CircularProgress::setValue(const int &value) {
     emit SI_valueChanged(value);
 }
 
-void CircularProgress::setMargin(const int &x, const int &y) {
+void CircularProgressBar::setMargin(const int &x, const int &y) {
     this->marginX = x;
     this->marginY = y;
     repaint();
     emit SI_marginChanged(x, y);
 }
 
-void CircularProgress::setShadow(const bool &enable) {
+void CircularProgressBar::setShadow(const bool &enable) {
     if (enable) {
         auto *shadow = new QGraphicsDropShadowEffect();
         shadow->setBlurRadius(15);
@@ -185,61 +185,61 @@ void CircularProgress::setShadow(const bool &enable) {
     emit this->SI_shadowChanged(enable);
 }
 
-void CircularProgress::setWidth(const int &width) {
+void CircularProgressBar::setWidth(const int &width) {
     this->width = width;
     QResizeEvent event(this->size(), this->size());
     this->resizeEvent(&event);
     repaint();
     emit this->SI_widthChanged(width);
 }
-void CircularProgress::setHeight(const int &height) {
+void CircularProgressBar::setHeight(const int &height) {
     this->height = height;
     QResizeEvent event(this->size(), this->size());
     this->resizeEvent(&event);
     repaint();
     emit this->SI_heightChanged(height);
 }
-void CircularProgress::setTextAlignment(const Qt::Alignment &alignment) {
+void CircularProgressBar::setTextAlignment(const Qt::Alignment &alignment) {
     this->textAlignment = alignment;
     repaint();
     emit this->SI_textAlignmentChanged(alignment);
 }
-void CircularProgress::setProgressAlignment(const Qt::Alignment &alignment) {
+void CircularProgressBar::setProgressAlignment(const Qt::Alignment &alignment) {
     this->progressAlignment = alignment;
     repaint();
     emit this->SI_progressAlignmentChanged(alignment);
 }
-void CircularProgress::setProgressWidth(const int &width) {
+void CircularProgressBar::setProgressWidth(const int &width) {
     this->progress_width = width;
     repaint();
     emit this->SI_progressWidthChanged(width);
 }
-void CircularProgress::setProgressRoundedCap(const bool &enable) {
+void CircularProgressBar::setProgressRoundedCap(const bool &enable) {
     this->progress_rounded_cap = enable;
     repaint();
     emit this->SI_progressCapChanged(enable);
 }
-void CircularProgress::setEnableBg(const bool &enable) {
+void CircularProgressBar::setEnableBg(const bool &enable) {
     this->enable_bg = enable;
     repaint();
     emit this->SI_backgroundChanged(enable);
 }
-void CircularProgress::setBgColor(const QColor &color) {
+void CircularProgressBar::setBgColor(const QColor &color) {
     this->bg_color = color;
     repaint();
     emit this->SI_backgroundColorChanged(color);
 }
-void CircularProgress::setProgressColor(const QColor &color) {
+void CircularProgressBar::setProgressColor(const QColor &color) {
     this->progress_color = color;
     repaint();
     emit this->SI_progressColorChanged(color);
 }
-void CircularProgress::setEnableText(const bool &enable) {
+void CircularProgressBar::setEnableText(const bool &enable) {
     this->enable_text = enable;
     repaint();
     emit this->SI_textEnableChanged(enable);
 }
-void CircularProgress::setMaxValue(const int &value) {
+void CircularProgressBar::setMaxValue(const int &value) {
     if (value <= 0) {
         std::cerr << "Invalid max value" << std::endl;
         return;
@@ -253,34 +253,34 @@ void CircularProgress::setMaxValue(const int &value) {
     repaint();
     emit this->SI_maxValueChanged(value);
 }
-void CircularProgress::setFont(const QFont &family) {
+void CircularProgressBar::setFont(const QFont &family) {
     this->font = family;
     repaint();
     emit this->SI_fontChanged(family);
 }
 
-void CircularProgress::setSuffix(const QString &suffix) {
+void CircularProgressBar::setSuffix(const QString &suffix) {
     this->suffix = suffix;
     repaint();
     emit this->SI_suffixChanged(suffix);
 }
-void CircularProgress::setTextColor(const QColor &color) {
+void CircularProgressBar::setTextColor(const QColor &color) {
     this->text_color = color;
     repaint();
     emit this->SI_textColorChanged(color);
 }
-void CircularProgress::setSquare(const bool &enable) {
+void CircularProgressBar::setSquare(const bool &enable) {
     this->square = enable;
     QResizeEvent event(this->size(), this->size());
     this->resizeEvent(&event);
     emit this->SI_squareChanged(enable);
 }
-void CircularProgress::setGradient(const bool &enable) {
+void CircularProgressBar::setGradient(const bool &enable) {
     this->gradient = enable;
     repaint();
     emit this->SI_squareChanged(enable);
 }
-void CircularProgress::setGradientValues(const QMap<qreal, QColor> &colors) {
+void CircularProgressBar::setGradientValues(const QMap<qreal, QColor> &colors) {
     this->gradient_colors = colors;
     repaint();
     emit this->SI_gradientValuesChanged(colors);

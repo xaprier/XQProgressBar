@@ -3,7 +3,7 @@
 
 #include <QListWidget>
 
-#include "../include/CircularProgress.hpp"
+#include "../include/CircularProgressBar.hpp"
 
 QT_BEGIN_NAMESPACE
 class QColor;

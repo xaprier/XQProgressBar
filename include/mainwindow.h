@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 
-#include "CircularProgress.hpp"
+#include "CircularProgressBar.hpp"
 
 namespace Ui {
 class MainWindow;
@@ -15,7 +15,7 @@ class MainWindow : public QMainWindow {
   public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    XQt::CircularProgress *progressBar;
+    XQt::CircularProgressBar *progressBar;
 
   private:
     Ui::MainWindow *ui;

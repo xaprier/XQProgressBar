@@ -13,14 +13,14 @@
 #include <QSpinBox>
 
 #include "../design/ui_mainwindow.h"
-#include "CircularProgress.hpp"
+#include "CircularProgressBar.hpp"
 #include "GradientColorEditor.hpp"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
-    this->progressBar = new XQt::CircularProgress(this);
+    this->progressBar = new XQt::CircularProgressBar(this);
     this->progressBar->setProgressAlignment(Qt::AlignRight | Qt::AlignTop);
     this->progressBar->setSquare(true);
 
@@ -91,7 +91,7 @@ MainWindow::MainWindow(QWidget *parent)
     });
 
     connect(this->ui->valueSlider, &QSlider::valueChanged, this->progressBar,
-            &XQt::CircularProgress::SL_setValue);
+            &XQt::CircularProgressBar::SL_setValue);
 
     connect(this->ui->textCheck, &QCheckBox::stateChanged,
             [&](bool check) { this->progressBar->setEnableText(check); });
@@ -164,7 +164,7 @@ MainWindow::MainWindow(QWidget *parent)
         connect(&insertButton, &QPushButton::clicked, &editor,
                 &GradientColorEditor::insertNewItem);
         connect(&editor, &GradientColorEditor::gradientChanged, this->progressBar,
-                &XQt::CircularProgress::SL_setGradientValues);
+                &XQt::CircularProgressBar::SL_setGradientValues);
 
         QGridLayout layout;
         layout.addWidget(qobject_cast<QWidget *>(&editor));

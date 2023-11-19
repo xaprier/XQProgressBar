@@ -21,8 +21,8 @@ set(PROJECT_SOURCES
   src/mainwindow.cpp
   include/mainwindow.h
   design/mainwindow.ui
-  src/CircularProgress.cpp
-  include/CircularProgress.hpp
+  src/CircularProgressBar.cpp
+  include/CircularProgressBar.hpp
   src/GradientColorEditor.cpp
   include/GradientColorEditor.hpp
 )

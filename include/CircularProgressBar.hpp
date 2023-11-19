@@ -1,5 +1,5 @@
-#ifndef CIRCULARPROGRESS_H
-#define CIRCULARPROGRESS_H
+#ifndef CircularProgressBar_H
+#define CircularProgressBar_H
 
 #include <qnamespace.h>
 
@@ -10,7 +10,7 @@
 #include <QWidget>
 
 namespace XQt {
-class CircularProgress : public QWidget {
+class CircularProgressBar : public QWidget {
     Q_OBJECT
   public:
     /**
@@ -18,8 +18,8 @@ class CircularProgress : public QWidget {
      *
      * @param parent Parent widget
      */
-    CircularProgress(QWidget *parent = nullptr);
-    ~CircularProgress();
+    CircularProgressBar(QWidget *parent = nullptr);
+    ~CircularProgressBar();
 
     /**
      * @brief Setter functions for the widget
@@ -160,4 +160,4 @@ class CircularProgress : public QWidget {
 };
 }  // namespace XQt
 
-#endif  // CIRCULARPROGRESS_H
+#endif  // CircularProgressBar_H
