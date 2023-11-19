@@ -1,5 +1,7 @@
 # XQProgressBar
-A circular progressbar written with C++ &amp; Qt.
+A circular progressbar written with C++ &amp; Qt Widgets!
+
+You can use QtQuick but if you don't want you can use my project which is produced by QPainter
 
 The progress bar is under namespace XQt and it has multiple props as QProgressBar but more!
 
