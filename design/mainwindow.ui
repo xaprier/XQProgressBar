@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QSlider" name="valueSlider">
+          <property name="maximum">
+           <number>100</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="cirdularDegreeLE">
+          <property name="text">
+           <string>270</string>
+          </property>
+          <property name="placeholderText">
+           <string>Circular Degree</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="heightLE">
+          <property name="text">
+           <string>200</string>
+          </property>
+          <property name="placeholderText">
+           <string>Height</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="widthLE">
+          <property name="text">
+           <string>200</string>
+          </property>
+          <property name="placeholderText">
+           <string>Width</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="maxValueLE">
+          <property name="text">
+           <string>100</string>
+          </property>
+          <property name="placeholderText">
+           <string>Max Value</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="progressWidthLE">
+          <property name="text">
+           <string>10</string>
+          </property>
+          <property name="placeholderText">
+           <string>Progress Width</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="progressColorButton">
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	background-color: #498bd1;
+}</string>
+          </property>
+          <property name="text">
+           <string>Progress Color</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="backgroundColorButton">
+          <property name="styleSheet">
+           <string notr="true">background-color: #44475a;</string>
+          </property>
+          <property name="text">
+           <string>Background Color</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="textCheck">
+          <property name="text">
+           <string>Text</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="enableBgCheck">
+          <property name="text">
+           <string>Enable Background</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="progressRoundedCheck">
+          <property name="text">
+           <string>Progress Rounded Cap</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="shadowCheck">
+          <property name="text">
+           <string>Shadow</string>
+          </property>
+          <property name="checked">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QCheckBox" name="gradientCheck">
+            <property name="text">
+             <string>Gradient</string>
+            </property>
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="gradientButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Select Colors</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="squareCheck">
+          <property name="text">
+           <string>Squared</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="fontFamilyButton">
+          <property name="text">
+           <string>Font Family</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="suffixLE">
+          <property name="text">
+           <string>%</string>
+          </property>
+          <property name="placeholderText">
+           <string>Suffix</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="textColorButton">
+          <property name="styleSheet">
+           <string notr="true">background-color: #498bd1;
+</string>
+          </property>
+          <property name="text">
+           <string>Text Color</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
