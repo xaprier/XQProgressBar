@@ -137,4 +137,5 @@ setLayout(layout);
 
 # An example MainWindow for testing these features
 - All the implementation can be tested with created MainWindow class.
-- Picture of MainWindow: [https://github.com/xaprier/XQProgressBar/blob/main/assets/MainWindow.png](https://github.com/xaprier/XQProgressBar/blob/main/assets/MainWindow.png?raw=true)https://github.com/xaprier/XQProgressBar/blob/main/assets/MainWindow.png?raw=true
+- Picture of MainWindow
+![MainWindow](https://raw.githubusercontent.com/xaprier/XQProgressBar/main/assets/MainWindow.png)
