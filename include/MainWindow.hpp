@@ -15,7 +15,7 @@ class MainWindow : public QMainWindow {
   public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    XQt::CircularProgressBar *progressBar;
+    xaprier::qt::widgets::CircularProgressBar *progressBar;
 
   private:
     Ui::MainWindow *ui;

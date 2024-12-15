@@ -10,7 +10,6 @@ class QColor;
 class QWidget;
 QT_END_NAMESPACE
 
-//! [0]
 class GradientColorEditor : public QListWidget {
     Q_OBJECT
 

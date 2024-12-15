@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "MainWindow.hpp"
 
 #include <qboxlayout.h>
 #include <qgridlayout.h>
@@ -12,7 +12,7 @@
 #include <QLayout>
 #include <QSpinBox>
 
-#include "../design/ui_mainwindow.h"
+#include "../design/ui_MainWindow.h"
 #include "CircularProgressBar.hpp"
 #include "GradientColorEditor.hpp"
 
@@ -20,9 +20,9 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
-    this->progressBar = new XQt::CircularProgressBar(this);
-    this->progressBar->setProgressAlignment(Qt::AlignRight | Qt::AlignTop);
-    this->progressBar->setSquare(true);
+    this->progressBar = new xaprier::qt::widgets::CircularProgressBar(this);
+    this->progressBar->SetProgressAlignment(Qt::AlignCenter);
+    this->progressBar->SetSquare(true);
 
     this->ui->gridLayout->addWidget(this->progressBar);
     connect(this->ui->progressColorButton, &QPushButton::clicked, [&]() {
@@ -37,7 +37,7 @@ MainWindow::MainWindow(QWidget *parent)
             QColor selectedColor = colorDialog.selectedColor();
             QString colorHex = selectedColor.name();  // Renk değerini al
 
-            this->progressBar->setProgressColor(colorHex);
+            this->progressBar->SetProgressColor(colorHex);
             this->ui->progressColorButton->setStyleSheet(
                 "QPushButton { background-color: " + colorHex + "; }");
         }
@@ -47,7 +47,7 @@ MainWindow::MainWindow(QWidget *parent)
             [&](QString text) {
                 try {
                     int degree = text.toInt();
-                    this->progressBar->setCircularDegree(degree);
+                    this->progressBar->SetCircularDegree(degree);
                 } catch (...) {
                     this->ui->cirdularDegreeLE->setText("0");
                     return;
@@ -66,7 +66,7 @@ MainWindow::MainWindow(QWidget *parent)
             QColor selectedColor = colorDialog.selectedColor();
             QString colorHex = selectedColor.name();  // Renk değerini al
 
-            this->progressBar->setBgColor(colorHex);
+            this->progressBar->SetBgColor(colorHex);
             this->ui->backgroundColorButton->setStyleSheet(
                 "QPushButton { background-color: " + colorHex + "; }");
         }
@@ -84,30 +84,31 @@ MainWindow::MainWindow(QWidget *parent)
             QColor selectedColor = colorDialog.selectedColor();
             QString colorHex = selectedColor.name();  // Renk değerini al
 
-            this->progressBar->setTextColor(colorHex);
+            this->progressBar->SetTextColor(colorHex);
             this->ui->textColorButton->setStyleSheet(
                 "QPushButton { background-color: " + colorHex + "; }");
         }
     });
 
-    connect(this->ui->valueSlider, &QSlider::valueChanged, this->progressBar,
-            &XQt::CircularProgressBar::SL_setValue);
+    connect(this->ui->valueSlider, &QSlider::valueChanged, [&](int value) {
+        this->progressBar->SetValue(value);
+    });
 
     connect(this->ui->textCheck, &QCheckBox::stateChanged,
-            [&](bool check) { this->progressBar->setEnableText(check); });
+            [&](bool check) { this->progressBar->SetEnableText(check); });
 
     connect(this->ui->enableBgCheck, &QCheckBox::stateChanged,
-            [&](bool check) { this->progressBar->setEnableBg(check); });
+            [&](bool check) { this->progressBar->SetEnableBg(check); });
 
     connect(this->ui->progressRoundedCheck, &QCheckBox::stateChanged,
-            [&](bool check) { this->progressBar->setProgressRoundedCap(check); });
+            [&](bool check) { this->progressBar->SetProgressRoundedCap(check); });
 
     connect(this->ui->shadowCheck, &QCheckBox::stateChanged,
-            [&](bool check) { this->progressBar->setShadow(check); });
+            [&](bool check) { this->progressBar->SetShadow(check); });
 
     connect(this->ui->heightLE, &QLineEdit::textChanged, [&](QString text) {
         try {
-            this->progressBar->setHeight(text.toInt());
+            this->progressBar->SetHeight(text.toInt());
         } catch (...) {
             return;
         }
@@ -115,7 +116,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(this->ui->widthLE, &QLineEdit::textChanged, [&](QString text) {
         try {
-            this->progressBar->setWidth(text.toInt());
+            this->progressBar->SetWidth(text.toInt());
         } catch (...) {
             return;
         }
@@ -123,7 +124,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(this->ui->maxValueLE, &QLineEdit::textChanged, [&](QString text) {
         try {
-            this->progressBar->setMaxValue(text.toInt());
+            this->progressBar->SetMaxValue(text.toInt());
         } catch (...) {
             return;
         }
@@ -132,7 +133,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this->ui->progressWidthLE, &QLineEdit::textChanged,
             [&](QString text) {
                 try {
-                    this->progressBar->setProgressWidth(text.toInt());
+                    this->progressBar->SetProgressWidth(text.toInt());
                 } catch (...) {
                     return;
                 }
@@ -145,10 +146,10 @@ MainWindow::MainWindow(QWidget *parent)
     });
 
     connect(this->ui->suffixLE, &QLineEdit::textChanged,
-            [&](QString text) { this->progressBar->setSuffix(text); });
+            [&](QString text) { this->progressBar->SetSuffix(text); });
 
     connect(this->ui->squareCheck, &QCheckBox::stateChanged,
-            [&](int state) { this->progressBar->setSquare(state); });
+            [&](int state) { this->progressBar->SetSquare(state); });
 
     connect(this->ui->gradientCheck, &QCheckBox::stateChanged,
             [&](int state) { this->ui->gradientButton->setEnabled(state); });
@@ -163,8 +164,9 @@ MainWindow::MainWindow(QWidget *parent)
                 &GradientColorEditor::deleteSelectedItem);
         connect(&insertButton, &QPushButton::clicked, &editor,
                 &GradientColorEditor::insertNewItem);
-        connect(&editor, &GradientColorEditor::gradientChanged, this->progressBar,
-                &XQt::CircularProgressBar::SL_setGradientValues);
+        connect(&editor, &GradientColorEditor::gradientChanged, [&](const QMap<qreal, QColor> &map) {
+            this->progressBar->SetGradientColors(map);
+        });
 
         QGridLayout layout;
         layout.addWidget(qobject_cast<QWidget *>(&editor));

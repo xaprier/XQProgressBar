@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(circular VERSION 0.1 LANGUAGES CXX)
+project(XQCircularProgressBar_TEST VERSION 0.1 LANGUAGES CXX)
+
+add_subdirectory(lib) # get library
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -16,45 +18,44 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 include_directories("./include/")
 
+file(GLOB CPP_FILES src/*.cpp)
+file(GLOB HPP_FILES include/*.hpp)
+file(GLOB UI_FILES design/*.ui)
+
 set(PROJECT_SOURCES
-  src/main.cpp
-  src/mainwindow.cpp
-  include/mainwindow.h
-  design/mainwindow.ui
-  src/CircularProgressBar.cpp
-  include/CircularProgressBar.hpp
-  src/GradientColorEditor.cpp
-  include/GradientColorEditor.hpp
+    ${CPP_FILES}
+    ${HPP_FILES}
+    ${UI_FILES}
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-  qt_add_executable(circular
+  qt_add_executable(${PROJECT_NAME}
     MANUAL_FINALIZATION
     ${PROJECT_SOURCES}
   )
 
 # Define target properties for Android with Qt 6 as:
-# set_property(TARGET circular APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
+# set_property(TARGET ${PROJECT_NAME} APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 # CMAKE_CURRENT_SOURCE_DIR/android)
 # For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
 else()
   if(ANDROID)
-    add_library(circular SHARED
+    add_library(${PROJECT_NAME} SHARED
       ${PROJECT_SOURCES}
     )
 
   # Define properties for Android with Qt 5 after find_package() calls as:
   # set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
   else()
-    add_executable(circular
+    add_executable(${PROJECT_NAME}
       ${PROJECT_SOURCES}
     )
   endif()
 endif()
 
-target_link_libraries(circular PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets XQCircularProgressBar)
 
-set_target_properties(circular PROPERTIES
+set_target_properties(${PROJECT_NAME} PROPERTIES
   MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
   MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
   MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
@@ -62,6 +63,6 @@ set_target_properties(circular PROPERTIES
   WIN32_EXECUTABLE TRUE
 )
 
-install(TARGETS circular
+install(TARGETS ${PROJECT_NAME}
   BUNDLE DESTINATION .
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
